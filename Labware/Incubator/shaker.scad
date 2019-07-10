@@ -1,7 +1,7 @@
 $fn=30;
 plate_x = 127.71;
 plate_y= 85.43;
-plate_tolerance=1;
+plate_tolerance=0.1;
 plate_z=30;
 plate_z_tolerance=5;
 
@@ -25,7 +25,7 @@ middle_size_x=20;
 middle_overlap=10;
 gapwidth = 80;
 riser_width=3;
-riser_height=20;
+riser_height=40;
 screw_big_hole = 4;
 screw_small_hole= 1.6;
 
@@ -123,7 +123,7 @@ module quadcopy()
 
 quadcopy() color("red") holder();
 
-for(x=[0:riser_height:90]){
+for(x=[0:riser_height:120]){
     translate([0,0,x]){
         unit();
     }
