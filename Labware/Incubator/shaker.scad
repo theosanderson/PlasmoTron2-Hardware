@@ -1,4 +1,4 @@
-$fn=30;
+$fn=80;
 plate_x = 127.71;
 plate_y= 85.43;
 plate_tolerance=0.1;
