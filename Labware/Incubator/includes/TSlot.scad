@@ -93,8 +93,8 @@ module tSlot() {
   }
 }
 
-module 2020Profile(height, core = ProfileCore) {
-  linear_extrude(height = height, center = true)
+module 2020Profile(height, core = ProfileCore, center= true) {
+  linear_extrude(height = height, center = center)
   union() {
     difference() {
       minkowski() {
@@ -108,6 +108,11 @@ module 2020Profile(height, core = ProfileCore) {
       translate([0, 0.5 * 20 - 0.087 * 20, 0]) rotate([0, 0, -90]) tSlot();
     }
   }
+}
+
+module 1515Profile(height, center= true) {
+    scale([3/4,3/4,1]) 2020Profile(height,center=center);
+ 
 }
 
 module 2040Profile(height, core = ProfileCore) {

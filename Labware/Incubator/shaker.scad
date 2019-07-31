@@ -1,3 +1,6 @@
+use <includes/Tslot.scad>
+use <MCAD/nuts_and_bolts.scad>
+
 $fn=80;
 plate_x = 127.71;
 plate_y= 85.43;
@@ -28,6 +31,8 @@ riser_width=3;
 riser_height=40;
 screw_big_hole = 4;
 screw_small_hole= 1.6;
+
+number_of_units = 4;
 
 module neg_plate(){
     hull(){
@@ -123,8 +128,10 @@ module quadcopy()
 
 quadcopy() color("red") holder();
 
-for(x=[0:riser_height:120]){
+for(x=[0:riser_height:riser_height*number_of_units-1]){
     translate([0,0,x]){
         unit();
     }
 }
+
+1515Profile(riser_height*number_of_units,center=false);

@@ -46,7 +46,7 @@ module doorframe() {
 
 doorframe();
 mirror([1,0,0]) doorframe();
-color("blue")aperture_box();
+//color("blue")aperture_box();
 module aperture_box() {
     translate([0, door_frame_thickness, 0]) aperture_box_acrylic();
 }
@@ -89,6 +89,7 @@ module door_at_zero() {
 
     translate([0, door_hinge_pivot, -aperture_height / 2 - acrylic_thickness])
     door();
+    
 }
 
 module door_with_linkage(linkage_translation) {
@@ -97,6 +98,7 @@ module door_with_linkage(linkage_translation) {
     door();
     translate(linkage_translation)
     translate([0, door_hinge_pivot, -aperture_height / 2 - acrylic_thickness]) mirror([1,0,0]) door();
+    translate([40,3,-8]) semicircle();
 }
 
 
@@ -111,7 +113,7 @@ module door_with_linkage_at_angle(angle = 0) {
     }
 
 }
-door_with_linkage_at_angle(140);
+door_with_linkage_at_angle(0);
 
 module hinge() {
     translate([0, 0, aperture_height + acrylic_thickness * 2 + door_frame_thickness * 1]) cube([door_hinge_hinge_thickness, door_frame_depth, 20]);
@@ -163,7 +165,7 @@ module cog2() {
     translate(cog2_vec)
     rotate(90, [0, 1, 0]) rotate(103, [0, 0, 1]) herringbone_gear(modul = 1, tooth_number = 7, width = cog2_width, bore = 3, pressure_angle = 20, helix_angle = -20, optimized = true);
 };
-color("orange")cog2();
+//color("orange")cog2();
 
 
 cog2_spacer_width=1;
@@ -174,7 +176,7 @@ module cog2joiner() {
         cylinder(r=1.5,h=cog2_spacer_width);
 }
 };
-cog2joiner();
+//cog2joiner();
 
 
 
@@ -182,7 +184,7 @@ module cog2b() {
     translate(cog2_vec+[cog2_width+cog2_spacer_width,0,0])
     rotate(90, [0, 1, 0]) rotate(45, [0, 0, 1]) herringbone_gear(modul = 1, tooth_number = 16, width = 15, bore = 3, pressure_angle = 20, helix_angle = -20, optimized = true);
 };
-cog2b();
+//cog2b();
 
 
 
@@ -195,7 +197,7 @@ module cog5() {
     translate(cog5_vec)
     rotate(90, [0, 1, 0]) rotate(16.5, [0, 0, 1]) herringbone_gear(modul = 1, tooth_number = 7, width = 15, bore = 3, pressure_angle = 20, helix_angle = 20, optimized = true);
 };
-cog5();
+//cog5();
 
 cog6_width=4;
 cog6_vec= cog5_vec - [cog2_spacer_width+cog2_width+cog6_width,0,0];
@@ -220,10 +222,10 @@ color("red")rotate(-90, [0, 0, 1]) rotate(-90, [1, 0, 0]) bevel_herringbone_gear
     
     
 }
-cog6();
-translate([-9.0,-19.36,73.6])
-rotate(90,[0,1,0])
-gear_grub(hole_diameter=3,grub_diameter=15);
+//cog6();
+//translate([-9.0,-19.36,73.6])
+//rotate(90,[0,1,0])
+//gear_grub(hole_diameter=3,grub_diameter=15);
 
 module motor_mount(){
          difference(){
@@ -239,4 +241,28 @@ rotate(90,[1,0,0])rotate(0)   NEMA17_parallel_holes(
              
          }};
          motor_mount();
+         
+         
+module endstop_board(){
+    difference(){
+    cube([2,16,39.5]);
+    translate([2,3,3.5]) rotate(90,[0,1,0])cylinder(r=1.5,h=20,center=true);
+    translate([2,3,3.5+19]) rotate(90,[0,1,0])cylinder(r=1.5,h=20,center=true);
+    }
+    };
+    
+   color("red") translate([48,-13,52]) endstop_board();
+    
+     color("red") translate([45-9,-13+16,52]) cube([14,2,39.5]);
            
+    
+    
+    module semicircle(){
+        difference(){
+            rotate(90,[0,1,0]) scale([1,1,1])cylinder(r=5,h=5);
+            translate([-50,0,-50])cube([100,100,100]);
+            
+        }
+        }
+        
+        
